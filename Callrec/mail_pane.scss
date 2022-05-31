@@ -1,0 +1,45 @@
+.mail_page {
+	width: 40rem;
+	h2 {
+		font-weight: 500;
+		margin: 0 0 1rem;
+		font-size: 1.7rem;
+	}
+}
+.part {
+	position: relative;
+	margin-bottom: 1rem;
+	.info_pane {
+		margin: 0;
+		p {
+			overflow: visible;
+		}
+	}
+	div {
+		display: flex;
+	}
+	textarea {
+		resize: none;
+		width: 98%;
+		color: black;
+		border-radius: 0.3rem;
+		border: 1px solid grey;
+		font-size: 1.2rem;
+	}
+	#subject {
+		height: 1.5rem;
+	}
+	#message {
+		height: 10rem;
+	}
+	label {
+		display: flex;
+	}
+}
+#send_email_btn {
+	width: 100%;
+}
+
+.shared_link {
+	margin: 2rem;
+}

@@ -1,0 +1,283 @@
+$header_color: #223344;
+@font-face {
+  font-family: "Avenir-pro";
+  src: url("./assets/avenir-next-lt-pro/AvenirNextLTPro-Regular.otf") format("opentype");
+  font-style: normal;
+}
+
+.player_container {
+  height: fit-content;
+  box-shadow: 0 0 5px grey;
+  width: 960px;
+  background-color: #d9d9d9;
+  font-family: "Avenir-pro", serif;
+  border-radius: 5px;
+  margin: 0.9rem 0;
+
+  button, select {
+    background-color: transparent;
+    border: 1px solid grey;
+    border-radius: 3px;
+  }
+
+  .timer {
+    font-size: 0.9rem;
+  }
+
+  .track_div {
+    position: relative;
+
+    .info_pane {
+      display: grid;
+      grid-template-columns: 8fr 4fr 4fr 1fr 1fr;
+      font-weight: 500;
+      font-size: 0.9rem;
+      margin: 0 0.5rem 0 3.5rem;
+      height: 1.8rem;
+
+      .audio_speed_input {
+        position: relative;
+        top: 0.2rem;
+        margin-bottom: 0;
+        height: 1.2rem;
+        font-size: 0.8rem;
+        font-weight: bolder;
+        width: 3rem;
+        margin-left: 0.5rem;
+        padding: 0;
+      }
+
+      p {
+        display: flex;
+        position: relative;
+        margin: 0 0 0 0.8rem;
+        height: 1.6rem;
+        top: 0.1rem;
+        overflow: hidden;
+        text-wrap: none;
+
+        b {
+          position: relative;
+          top: 0.2rem;
+          font-weight: 500;
+        }
+      }
+
+      .date_info {
+        color: rgba(26, 26, 26, 0.76);
+      }
+
+      img {
+        position: relative;
+        height: 1.2rem;
+        top: -0.1rem;
+        margin: 0 0.3rem;
+        line-height: 1rem;
+        color: #505050;
+      }
+
+      .checkbox_icon {
+        height: 1rem;
+      }
+
+      .left_side {
+        margin-right: auto;
+      }
+
+    }
+
+    .player {
+      position: relative;
+      display: flex;
+      align-items: center;
+      background-color: #bbbbbb;
+      color: #faf8f8;
+
+      .waveform_container {
+        position: relative;
+        left: 3.6rem;
+        display: flex;
+        align-items: center;
+        max-height: 2px;
+        overflow: hidden;
+        transition: max-height 0.5s;
+
+        .canvas_div {
+          position: relative;
+          left: 0.1rem;
+          margin: 0 0.5rem;
+
+          canvas, .slider_canvas {
+            height: 50px;
+            width: 800px;
+            position: relative;
+            top: 0.2rem;
+          }
+
+          .slider_canvas {
+            position: absolute;
+            opacity: 0.5;
+            left: 0;
+          }
+
+          .slider_canvas {
+            opacity: 1;
+          }
+        }
+
+        * {
+          opacity: 0;
+        }
+      }
+    }
+
+    .tags_player_box {
+      position: absolute;
+      bottom: 0.3rem;
+      left: 4rem;
+      font-size: 0.8rem;
+
+      span::before {
+        content: '◦ ';
+        position: relative;
+        top: 0.1rem;
+      }
+
+      & span, & .tags_box p {
+        background-color: #595959;
+        color: white;
+        padding: 0.05rem 0.2rem;
+        border-radius: 3px;
+        margin-right: 0.2rem;
+        width: fit-content;
+
+        button {
+          color: white;
+          background-color: inherit;
+          border: none;
+          font-size: 1.2rem;
+          margin: 0 0 0.2rem 0.2rem;
+        }
+      }
+    }
+
+    .bottom {
+      display: flex;
+      -webkit-justify-content: flex-end;
+
+      p {
+        margin-left: 1.5rem;
+      }
+
+      .extra {
+        opacity: 0;
+      }
+
+      .bin_icon {
+        height: 1.3rem;
+      }
+
+    }
+  }
+
+  & .new_rec {
+    position: relative;
+
+    & ::before {
+      content: ' ';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2.5rem;
+      height: 2.5rem;
+      background-image: url("./assets/images/new.png");
+      background-size: contain;
+      z-index: 10;
+    }
+
+  }
+
+  //  ==== PLAY BUTTON ===  //
+
+  .play_btn_wrapper {
+    position: absolute;
+    left: 0.4rem;
+    width: 2.8rem;
+    height: 2.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: $header_color;
+
+    &.paused {
+      background-color: #e3ebec;
+    }
+  }
+
+  .play_button {
+    position: relative;
+    right: -0.1rem;
+    background: transparent;
+    box-sizing: border-box;
+    width: 0;
+    height: 15px;
+    border-color: transparent transparent transparent #ffffff;
+    transition: 300ms all ease;
+    cursor: pointer;
+    // play state
+    border-style: solid;
+    border-width: 10px 0 10px 15px;
+
+    &.paused {
+      border-style: double;
+      border-width: 0 0 0 15px;
+      right: 0;
+    }
+
+    &.opened {
+      border-color: transparent transparent transparent $header_color;
+    }
+
+    &:hover {
+      border-color: transparent transparent transparent #404040;
+    }
+  }
+
+  &.active {
+    .player {
+      background-color: $header_color;
+
+      .play_btn_wrapper {
+        background-color: #bbbbbb;
+
+        .play_button {
+          border-color: transparent transparent transparent $header_color;
+        }
+      }
+
+      .waveform_container {
+        max-height: 8rem;
+        height: auto;
+
+        * {
+          opacity: 1;
+        }
+      }
+    }
+
+    .extra {
+      opacity: 1 !important;
+    }
+  }
+}
+
+.record.info_pane {
+  text-align: left;
+
+  ul {
+    li {
+      margin: 0.2rem;
+    }
+  }
+}
